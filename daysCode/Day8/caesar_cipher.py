@@ -75,6 +75,7 @@ def caesar(start_text, shift_amount, cipher_direction):
 
 # TODO-1: Import and print the logo from art.py when the program starts.
 import art
+from os import system
 
 print(art.logo)
 # TODO-4: Can you figure out a way to ask the user if they want to restart the cipher program?
@@ -97,3 +98,5 @@ while not is_game_over:
 
     caesar(start_text=text, shift_amount=shift, cipher_direction=direction)
     is_game_over = "yes" == input("Do you want to end the Game ? ")
+    system("clear")
+    print(art.logo)
