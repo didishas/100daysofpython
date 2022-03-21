@@ -6,6 +6,14 @@ travel_log = [
 
 # TODO: Write the function that will allow new countries
 # to be added to the travel_log. 👇
+def add_new_country(name, visits, cities):
+    country = {}
+
+    country["country"] = name
+    country["visits"] = visits
+    country["cities"] = cities
+    travel_log.append(country)
+    # print(type(country), type(visits), type(cities))
 
 
 # 🚨 Do not change the code below
