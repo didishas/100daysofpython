@@ -64,18 +64,14 @@ def caesar(plain_text, shift_amount, direction):
 
     cipher_text = ""
 
+    if direction == "decode":
+        shift_amount *= -1
     for letter in plain_text:
         position = alphabet.index(letter)
-        if direction == "encode":
-            new_position = position + shift_amount
-        elif direction == "decode":
-            new_position = position - shift_amount
+        new_position = position + shift_amount
         cipher_text += alphabet[new_position]
 
-    if direction == "encode":
-        print(f"The encoded text is {cipher_text}")
-    elif direction == "decode":
-        print(f"The decoded text is {cipher_text}")
+    print(f"The {direction} text is {cipher_text}")
 
 
 # TODO-2: Call the caesar() function, passing over the 'text', 'shift' and 'direction' values.
