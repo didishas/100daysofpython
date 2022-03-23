@@ -1,4 +1,5 @@
 import random
+from art import logo
 
 
 def choose_difficulty():
@@ -55,6 +56,7 @@ def play_game():
 
 is_game_over = False
 while not is_game_over:
+    print(logo)
     play_game()
     if input("Do you want to play again, type 'y' or 'n'?: ") == "n":
         is_game_over = True
