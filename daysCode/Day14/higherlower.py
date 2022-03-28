@@ -75,7 +75,3 @@ def game():
     
 game()
         
-# ? compare followers 
-# ? report score
-# ? Check choices is_left
-# ? swap current_card by new_card and choose new_card
