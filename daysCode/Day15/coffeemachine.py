@@ -40,12 +40,12 @@ CHANGE = {"quarter": 0.25, "dime": 0.10, "nickle": 0.05, "penny": 0.01}
 
 def get_report():
     for k, v in resources.items():
-        if k != "coffee":
+        if k in ["water", "milk"]:
             print(f"{k}: {v}ml")
         elif k == "coffee":
             print(f"{k}: {v}g")
         else:
-            print(f"{k}: ${v}")
+            print(f"{k}: ${round(v, 2)}")
 
 
 def get_coins_total(quarter, dime, nickle, penny):
@@ -59,28 +59,57 @@ def get_coins_total(quarter, dime, nickle, penny):
 
 def give_change_back(total, price):
     change = round((total - price), 2)
-    print(f"Here is  ${change} in change")
+    if change > 0:
+        print(f"Here is  ${change} in change")
     return change
 
 
+def check_ressources(usr_request, res):
+    is_enough = True
 
-usr_request = input("What would you like ? (espresso, latte, capuccino): ")
+    for k, v in MENU[usr_request]["ingredients"].items():
+        if v > res[k]:
+            is_enough = False
+            return is_enough
+    return True
 
-if usr_request == "report":
-    get_report()
-else:
-    print("Please insert coins.")
-    quarter = float(input("How many quarter?: "))
-    dimes = float(input("How many dimes?: "))
-    nickles = float(input("How many nickles?: "))
-    pennies = float(input("How many pennies?: "))
 
-    total = get_coins_total(quarter, dimes, nickles, pennies)
-    price = MENU[usr_request]["cost"]
+def reduce_res(usr_request, res):
+    for k, v in MENU[usr_request]["ingredients"].items():
+        res[k] -= v
 
-    change = give_change_back(total, price)
-    
-    if change >= 0:
-        print(f"Here is your {usr_request} ☕ Enjoy.")
+
+usr_request = "on"
+resources["Money"] = 0
+while usr_request != "off":
+    usr_request = input("What would you like ? (espresso, latte, capuccino): ")
+
+    while usr_request not in ["espresso", "latte", "capuccino", "report", "off"]:
+        usr_request = input("Sorry we only serve => espresso, latte, capuccino ")
+
+    if usr_request == "report":
+        get_report()
+    elif usr_request in ["espresso", "latte", "capuccino"]:
+        print("Please insert coins.")
+        quarter = float(input("How many quarter?: "))
+        dimes = float(input("How many dimes?: "))
+        nickles = float(input("How many nickles?: "))
+        pennies = float(input("How many pennies?: "))
+
+        total = get_coins_total(quarter, dimes, nickles, pennies)
+        resources["Money"] += total
+        price = MENU[usr_request]["cost"]
+
+        change = give_change_back(total, price)
+
+        if change >= 0:
+            is_ressource_enough = check_ressources(usr_request, resources)
+            if is_ressource_enough:
+                reduce_res(usr_request, resources)
+                print(f"Here is your {usr_request} ☕ Enjoy.")
+            else:
+                print("Not enough resources")
+        else:
+            print(f"Sorry that's not enough money. ${change} refunded")
     else:
-        print(f"It is not enough for a {usr_request}")
+        print("Off")
