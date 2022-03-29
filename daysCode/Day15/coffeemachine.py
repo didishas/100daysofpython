@@ -31,13 +31,27 @@ resources = {
 }
 
 
+# section Helpers
+
+
+def get_report():
+    for k, v in resources.items():
+        if k != "coffee":
+            print(f"{k}: {v}ml")
+        elif k == "coffee":
+            print(f"{k}: {v}g")
+        else:
+            print(f"{k}: ${v}")
+
+
 usr_request = input("What would you like ? (espresso, latte, capuccino): ")
 
 if usr_request == "espresso":
     print("espresso")
-elif usr_request == latte:
+elif usr_request == "latte":
     print("latte")
 elif usr_request == "capuccino":
     print("capuccino")
 else:
-    print("report")
+    # print("report")
+    get_report()
