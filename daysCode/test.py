@@ -1,11 +1,21 @@
-accord = 3
+# import turtle
 
+# t = turtle.Turtle()
 
-def additive(accord):
-    accord += 1
-    print(accord)
+# s = turtle.Screen()
 
+# print(s.canvheight)
+# s.exitonclick()
+from prettytable import PrettyTable
+table = PrettyTable()
 
-print(accord)
-additive(accord)
-print(accord)
+table.field_names = ["FirstName", "LastName", "Country", "Age"]
+
+table.add_rows([
+    ["Didier", "Ukanda", "Congo", 45],
+    ["Cathy", "Bonder", "Romania", 32],
+    ["Iohana", "Ukanda-Bonder", "Belgique", 8],
+    ["Imanuel", "Ukanda-Bonder", "Belgique", 6]
+])
+
+print(table)
