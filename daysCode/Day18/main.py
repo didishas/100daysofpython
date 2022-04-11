@@ -1,10 +1,10 @@
 #####Turtle Intro######
 
-from turtle import Turtle, Screen
+import turtle as t 
 
-tim = Turtle()
+tim = t.Turtle()
 tim.speed(speed=1)
-screen = Screen()
+screen = t.Screen()
 
 tim.shape("turtle")
 tim.color("red")
@@ -37,35 +37,58 @@ tim.color("red")
 
 
 ########### Challenge 4 - Random Walk ########
+# import random
+
+# directions = (1, 2)
+# colours = [
+#     "CornflowerBlue",
+#     "DarkOrchid",
+#     "IndianRed",
+#     "DeepSkyBlue",
+#     "LightSeaGreen",
+#     "wheat",
+#     "SlateGray",
+#     "SeaGreen",
+# ]
+
+# is_continued = True
+# tim.pensize(5)
+# tim.speed(20)
+
+# while is_continued:
+#     dir_choice = random.choice(directions)
+#     col_choice = random.choice(colours)
+#     tim.pencolor(col_choice)
+#     if dir_choice == 1:
+#         tim.forward(20)
+#         tim.left(90)
+#     else:
+#         tim.forward(20)
+#         tim.right(90)
+
+
+
+
+########### Challenge 5 - Spirograph ########
 import random
 
-directions = (1, 2)
-colours = [
-    "CornflowerBlue",
-    "DarkOrchid",
-    "IndianRed",
-    "DeepSkyBlue",
-    "LightSeaGreen",
-    "wheat",
-    "SlateGray",
-    "SeaGreen",
-]
 
-is_continued = True
-tim.pensize(5)
-tim.speed(20)
+t.colormode(255)
+tim.speed("fastest")
 
-while is_continued:
-    dir_choice = random.choice(directions)
-    col_choice = random.choice(colours)
+def random_color():
+    r = random.randint(0, 255)
+    g = random.randint(0, 255)
+    b = random.randint(0, 255)
+    color = (r, g, b)
+    return color
+
+for _ in range(0,360,7):
+    col_choice = random_color()
     tim.pencolor(col_choice)
-    if dir_choice == 1:
-        tim.forward(20)
-        tim.left(90)
-    else:
-        tim.forward(20)
-        tim.right(90)
+    tim.circle(100)
+    tim.setheading(_)
 
 
-screen = Screen()
+screen = t.Screen()
 screen.exitonclick()
