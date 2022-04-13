@@ -9,6 +9,8 @@
 from prettytable import PrettyTable
 table = PrettyTable()
 
+cases = PrettyTable()
+
 table.field_names = ["FirstName", "LastName", "Country", "Age"]
 
 table.add_rows([
@@ -18,4 +20,12 @@ table.add_rows([
     ["Imanuel", "Ukanda-Bonder", "Belgique", 6]
 ])
 
+
+print(cases)
 print(table)
+
+import msvcrt as m
+# récupère le caractère sous la forme de byte
+char = m.getch()
+# convertir de bytes en string
+c = char.decode("ascii")
