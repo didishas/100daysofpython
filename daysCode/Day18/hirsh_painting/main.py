@@ -14,17 +14,23 @@ colormode(255)
 
 timy = Turtle()
 screen = Screen()
-
 timy.penup()
-timy.setx(-200)
-timy.sety(-300)
 
-for line in range(10):
-    timy.sety(-300 + (line*50))
-    timy.setx(-200)
-    for _ in range(10):
-        choosen_color = random.choice(rgb_colors)
-        timy.dot(20, choosen_color)
+timy.setheading(225)
+timy.forward(300)
+timy.setheading(0)
+
+number_of_dots = 100
+
+for dot_count in range(1, number_of_dots + 1):
+    timy.dot(20, random.choice(rgb_colors))
+    timy.forward(50)
+    
+    if dot_count % 10 == 0:
+        timy.setheading(90)
         timy.forward(50)
-        
-screen.exitonclick()    
+        timy.setheading(180)
+        timy.forward(500)
+        timy.setheading(0)
+    
+screen.exitonclick()
